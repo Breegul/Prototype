@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    //TODO: set a maximum for hook speed
     //TODO: tweak all the multipliers and drag and stuff
-    //TODO: if you go into a wall with high momentum you keep getting pushed into it, fix (if velocity.magnitude < 1: momentum = 0)?
+    //TODO: if you go into a wall with high momentum you keep getting pushed into it until momentum runs out, fix? (if velocity.magnitude < 1: momentum = 0)?
+    //      could be a feature, splat into the wall, slows you a bit.
+
     //class variables marked with // are only public for testing, should be made private
     public float speed;
     public float jumpHeight;
@@ -14,8 +15,8 @@ public class PlayerMove : MonoBehaviour
     public Vector3 velocity; //
     private float yVelocity;
     private Vector3 momentum;
-    public float momentumDrag;
-    public float momentumMultiplier;
+    public float momentumDrag; //
+    public float momentumMultiplier; //
 
     private float gravity = -10f;
     public bool isGrounded; //
@@ -25,21 +26,30 @@ public class PlayerMove : MonoBehaviour
     private CharacterController cc;
     private Camera pCamera;
 
-    private State state; //
-    private enum State
+    public State state; //
+    public enum State //
     {
         Normal,
+        Thrown,
         Hooked
     }
     public GameObject testBox;
     private Vector3 hookPos;
-    public float hookSpeedMultiplier;
-
+    private Transform hookShotTransform;
+    private float hookSize;
+    public float hookedSpeedMultiplier; //
+    public float hookMinSpeed; // Move these two down to HookMovement when done testing. (15, 50) seems ok
+    public float hookMaxSpeed; //
+    public float hookMaxDist;  //
 
     void Start()
     {
         cc = GetComponent<CharacterController>();
         pCamera = transform.Find("Camera").GetComponent<Camera>();
+
+        hookShotTransform = transform.Find("HookShot").transform;
+        hookShotTransform.gameObject.SetActive(false);
+
         state = State.Normal;
     }
 
@@ -49,6 +59,9 @@ public class PlayerMove : MonoBehaviour
         {
             case State.Normal:
                 GroundMovement();
+                break;
+            case State.Thrown:
+                HookThrown();
                 break;
             case State.Hooked:
                 HookMovement();
@@ -98,28 +111,42 @@ public class PlayerMove : MonoBehaviour
         // Casts a ray, if it hits player is hooked
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(pCamera.transform.position, pCamera.transform.forward, out RaycastHit raycastHit))
+            if (Physics.Raycast(pCamera.transform.position, pCamera.transform.forward, out RaycastHit raycastHit, hookMaxDist))
             {
                 testBox.transform.position = raycastHit.point;
                 hookPos = raycastHit.point;
-                state = State.Hooked;
+                hookShotTransform.gameObject.SetActive(true);
+                state = State.Thrown;
             }
         }
     }
 
+    private void HookThrown()
+    {
+        hookShotTransform.LookAt(hookPos);
+
+        float hookThrowSpeed = 80f;
+        hookSize += hookThrowSpeed*Time.deltaTime;
+        hookShotTransform.localScale = new Vector3(1,1,hookSize);
+
+        if(hookSize >= Vector3.Distance(transform.position, hookPos)) state = State.Hooked;
+    }
+
     private void HookMovement()
     {
+        hookShotTransform.LookAt(hookPos);
+
         Vector3 hookDir = (hookPos - transform.position).normalized;
         float hookSpeed = Vector3.Distance(transform.position, hookPos);
+        hookSpeed = Mathf.Clamp(hookSpeed, hookMinSpeed, hookMaxSpeed);
 
-        cc.Move(hookDir * hookSpeed * hookSpeedMultiplier * Time.deltaTime);
+        cc.Move(hookDir * hookSpeed * hookedSpeedMultiplier * Time.deltaTime);
 
         // Hook done when distance to hookPos < 1.5f (if it's too low gets stuck on some slants)
         // or when player clicks again
         if (Vector3.Distance(transform.position, hookPos) < 1.5f || Input.GetMouseButtonDown(0))
         {
-            state = State.Normal;
-            yVelocity = 0;
+            HookStop();
         }
 
         // add momentum on jump, based on hookDir, current hookSpeed, and a multiplier
@@ -128,8 +155,14 @@ public class PlayerMove : MonoBehaviour
         {
             momentum = hookDir * hookSpeed * momentumMultiplier;
             momentum += Vector3.up * 2 * Mathf.Sqrt(jumpHeight * -2f * gravity);
-            state = State.Normal;
-            yVelocity = 0;
+            HookStop();
         }
+    }
+    
+    private void HookStop()
+    {
+        state = State.Normal;
+        yVelocity = 0;
+        hookShotTransform.gameObject.SetActive(false);
     }
 }
