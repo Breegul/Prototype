@@ -35,7 +35,7 @@ public class PlayerMove : MonoBehaviour
     }
     public GameObject testBox;
     private Vector3 hookPos;
-    private Transform hookShotTransform;
+    public Transform hookShotTransform; // made public because things were breaking
     private float hookSize;
     public float hookedSpeedMultiplier; //
     public float hookMinSpeed; // Move these two down to HookMovement when done testing. (15, 50) seems ok
@@ -47,7 +47,6 @@ public class PlayerMove : MonoBehaviour
         cc = GetComponent<CharacterController>();
         pCamera = transform.Find("Camera").GetComponent<Camera>();
 
-        hookShotTransform = transform.Find("HookShot").transform;
         hookShotTransform.gameObject.SetActive(false);
 
         state = State.Normal;
@@ -115,6 +114,7 @@ public class PlayerMove : MonoBehaviour
             {
                 testBox.transform.position = raycastHit.point;
                 hookPos = raycastHit.point;
+                hookSize = 0f;
                 hookShotTransform.gameObject.SetActive(true);
                 state = State.Thrown;
             }
@@ -125,7 +125,7 @@ public class PlayerMove : MonoBehaviour
     {
         hookShotTransform.LookAt(hookPos);
 
-        float hookThrowSpeed = 80f;
+        float hookThrowSpeed = 250f;
         hookSize += hookThrowSpeed*Time.deltaTime;
         hookShotTransform.localScale = new Vector3(1,1,hookSize);
 

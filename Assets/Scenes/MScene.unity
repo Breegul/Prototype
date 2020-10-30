@@ -617,6 +617,7 @@ MonoBehaviour:
     m_Bits: 256
   state: 0
   testBox: {fileID: 125020037}
+  hookShotTransform: {fileID: 1280806249}
   hookedSpeedMultiplier: 3
   hookMinSpeed: 10
   hookMaxSpeed: 50
