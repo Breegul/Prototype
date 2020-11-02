@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     //TODO: tweak all the multipliers and drag and stuff
+    //TODO: remove player from mask for hook raycast, possibly only allow certain things to be hooked?
     //TODO: if you go into a wall with high momentum you keep getting pushed into it until momentum runs out, fix? (if velocity.magnitude < 1: momentum = 0)?
     //      could be a feature, splat into the wall, slows you a bit.
+    //      Land before hook again?
 
     //class variables marked with // are only public for testing, should be made private
     public float speed;
@@ -42,12 +44,17 @@ public class PlayerMove : MonoBehaviour
     public float hookMaxSpeed; //
     public float hookMaxDist;  //
 
+    private GameController gameController;
+
     void Start()
     {
         cc = GetComponent<CharacterController>();
         pCamera = transform.Find("Camera").GetComponent<Camera>();
 
         hookShotTransform.gameObject.SetActive(false);
+
+        GameObject gc = GameObject.Find("Game");
+        gameController = gc.GetComponent<GameController>();
 
         state = State.Normal;
     }
@@ -125,7 +132,7 @@ public class PlayerMove : MonoBehaviour
     {
         hookShotTransform.LookAt(hookPos);
 
-        float hookThrowSpeed = 250f;
+        float hookThrowSpeed = 300f;
         hookSize += hookThrowSpeed*Time.deltaTime;
         hookShotTransform.localScale = new Vector3(1,1,hookSize);
 
@@ -164,5 +171,15 @@ public class PlayerMove : MonoBehaviour
         state = State.Normal;
         yVelocity = 0;
         hookShotTransform.gameObject.SetActive(false);
+    }
+
+    //temp
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "PickUp")
+        {
+            other.gameObject.SetActive(false);
+            gameController.collect();
+        }
     }
 }
