@@ -66,7 +66,7 @@ public class PlayerMove : MonoBehaviour
         switch (state)
         {
             case State.Normal:
-                GroundMovement();
+                NormalMovement();
                 break;
             case State.Thrown:
                 HookThrown();
@@ -81,7 +81,7 @@ public class PlayerMove : MonoBehaviour
         HookStart();
     }
 
-    private void GroundMovement()
+    private void NormalMovement()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, groundMask);
         isFloating = !isGrounded && Input.GetKey(KeyCode.Space) && yVelocity <= 0f;
@@ -90,7 +90,7 @@ public class PlayerMove : MonoBehaviour
         if (isGrounded && yVelocity < 0)
         {
             yVelocity = -1f;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)) //jump
             {
                 yVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }

@@ -104,8 +104,8 @@ GameObject:
   - component: {fileID: 5912044894930012669}
   - component: {fileID: 5912044894930012670}
   - component: {fileID: 5912044894930012671}
-  - component: {fileID: 5912044894930012656}
   - component: {fileID: 346032712077926760}
+  - component: {fileID: 8843660720013366884}
   m_Layer: 9
   m_Name: Coin
   m_TagString: PickUp
@@ -1542,20 +1542,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5912044894930012657}
   m_Mesh: {fileID: 0}
---- !u!64 &5912044894930012656
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5912044894930012657}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &346032712077926760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,6 +1554,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925fcf232fe5da447a418fdc1058d8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &8843660720013366884
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5912044894930012657}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.71561545
+  m_Center: {x: -0.5000001, y: 0.036283255, z: 0}
 --- !u!1 &6954017786920571015
 GameObject:
   m_ObjectHideFlags: 0

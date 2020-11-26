@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 536576713919900765}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   speed: 10
   jumpHeight: 3
   velocity: {x: 0, y: 0, z: 0}
+  yVelocity: 0
   momentumDrag: 2
   momentumMultiplier: 5
   isGrounded: 0
@@ -156,6 +157,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  isFloating: 0
   state: 0
   testBox: {fileID: 0}
   hookShotTransform: {fileID: 536576714451519022}

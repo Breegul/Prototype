@@ -11,9 +11,18 @@ public class WhaleMove : MonoBehaviour
         target = transform.Find("WhaleTarget").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.RotateAround(target.position, Vector3.up, 20*Time.deltaTime);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        other.transform.parent = transform;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        other.transform.parent = null;
     }
 }
