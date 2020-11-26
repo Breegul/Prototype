@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     //TODO: tweak all the multipliers and drag and stuff
-    //TODO: remove player from mask for hook raycast, possibly only allow certain things to be hooked?
+    //TODO: only allow certain things to be hooked?
     //TODO: if you go into a wall with high momentum you keep getting pushed into it until momentum runs out, fix? (if velocity.magnitude < 1: momentum = 0)?
     //      could be a feature, splat into the wall, slows you a bit.
-    //      Land before hook again?
+    //TODO: Land before hook again?
 
     //class variables marked with // are only public for testing, should be made private
     public float speed;
@@ -33,7 +33,8 @@ public class PlayerMove : MonoBehaviour
     {
         Normal,
         Thrown,
-        Hooked
+        Hooked,
+        Floating
     }
     public GameObject testBox;
     private Vector3 hookPos;
@@ -72,7 +73,12 @@ public class PlayerMove : MonoBehaviour
             case State.Hooked:
                 HookMovement();
                 break;
+            case State.Floating:
+                FloatMovement();
+                break;
         }
+        // (right vector*hInput + forward vector*vInput) * speed
+        velocity = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")) * speed;
 
         HookStart();
     }
@@ -80,9 +86,6 @@ public class PlayerMove : MonoBehaviour
     private void GroundMovement()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, groundMask);
-
-        // (right vector*hInput + forward vector*vInput) * speed
-        velocity = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")) * speed;
 
         //if player is grounded make velocity constant, player can jump while grounded
         if (isGrounded && yVelocity < 0)
@@ -98,6 +101,12 @@ public class PlayerMove : MonoBehaviour
         yVelocity += gravity * Time.deltaTime;
         velocity.y = yVelocity;
 
+        // floating
+        // if(!isGrounded && Input.GetKey(KeyCode.Space))
+        // {
+        //     state = State.Floating;
+        // }
+
         // apply momentum then dampen it 
         velocity += momentum;
         if (momentum.magnitude > 0f)
@@ -110,6 +119,17 @@ public class PlayerMove : MonoBehaviour
         }
 
         cc.Move(velocity * Time.deltaTime);
+    }
+
+    private void FloatMovement()
+    {
+        if(!isGrounded && Input.GetKey(KeyCode.Space) && velocity.y <= -0.1f)
+        {
+            yVelocity = 0;
+            velocity.y = yVelocity;
+            cc.Move(velocity*Time.deltaTime);
+        }
+        state = State.Normal;
     }
 
     private void HookStart()
