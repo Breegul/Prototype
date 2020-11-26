@@ -15,7 +15,7 @@ public class PlayerMove : MonoBehaviour
     public float jumpHeight;
 
     public Vector3 velocity; //
-    private float yVelocity;
+    public float yVelocity; //
     private Vector3 momentum;
     public float momentumDrag; //
     public float momentumMultiplier; //
@@ -24,6 +24,7 @@ public class PlayerMove : MonoBehaviour
     public bool isGrounded; //
     public Transform groundCheck;
     public LayerMask groundMask;
+    public bool isFloating;
 
     private CharacterController cc;
     private Camera pCamera;
@@ -73,9 +74,6 @@ public class PlayerMove : MonoBehaviour
             case State.Hooked:
                 HookMovement();
                 break;
-            case State.Floating:
-                FloatMovement();
-                break;
         }
         // (right vector*hInput + forward vector*vInput) * speed
         velocity = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")) * speed;
@@ -86,8 +84,9 @@ public class PlayerMove : MonoBehaviour
     private void GroundMovement()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, groundMask);
+        isFloating = !isGrounded && Input.GetKey(KeyCode.Space) && yVelocity <= 0f;
 
-        //if player is grounded make velocity constant, player can jump while grounded
+        //if player is grounded make yvelocity constant, player can jump while grounded
         if (isGrounded && yVelocity < 0)
         {
             yVelocity = -1f;
@@ -97,15 +96,25 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        // floating, lets you float when falling or at peak of jump, if you move you start falling but slower
+        // doesn't affect momentum, maybe it should like an airbrake? TODO
+        if(isFloating)
+        {
+            if(velocity.magnitude < 0.5f)
+            {
+                gravity = 0;
+                yVelocity = 0;
+            }
+            if(velocity.magnitude > 0f)
+            {
+                gravity = -5f;
+            }
+        } else gravity = -10f;
+
         // gravity, multiply by time twice because maths, also yVelocity because otherwise it gets reset
         yVelocity += gravity * Time.deltaTime;
         velocity.y = yVelocity;
 
-        // floating
-        // if(!isGrounded && Input.GetKey(KeyCode.Space))
-        // {
-        //     state = State.Floating;
-        // }
 
         // apply momentum then dampen it 
         velocity += momentum;
@@ -119,17 +128,6 @@ public class PlayerMove : MonoBehaviour
         }
 
         cc.Move(velocity * Time.deltaTime);
-    }
-
-    private void FloatMovement()
-    {
-        if(!isGrounded && Input.GetKey(KeyCode.Space) && velocity.y <= -0.1f)
-        {
-            yVelocity = 0;
-            velocity.y = yVelocity;
-            cc.Move(velocity*Time.deltaTime);
-        }
-        state = State.Normal;
     }
 
     private void HookStart()

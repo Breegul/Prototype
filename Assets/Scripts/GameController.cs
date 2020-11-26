@@ -19,7 +19,9 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        velText.text = "Vel: "+player.velocity.ToString("0.00");
+        Vector3 vel = player.velocity;
+        float y = player.yVelocity;
+        velText.text = $"Vel: ({vel.x.ToString("0.0")}, {y.ToString("0.0")}, {vel.z.ToString("0.0")}) VelM: {vel.magnitude}";
     }
 
     public void collect()
