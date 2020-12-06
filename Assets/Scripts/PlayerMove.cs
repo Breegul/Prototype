@@ -37,10 +37,12 @@ public class PlayerMove : MonoBehaviour
         Hooked,
         Floating
     }
-    public GameObject testBox;
+    //public GameObject testBox;
     private Vector3 hookPos;
     public Transform hookShotTransform; // made public because things were breaking
     private float hookSize;
+    public bool canHook;
+    private RaycastHit hookHit;
     public float hookedSpeedMultiplier; //
     public float hookMinSpeed; // Move these two down to HookMovement when done testing. (15, 50) seems ok
     public float hookMaxSpeed; //
@@ -85,6 +87,8 @@ public class PlayerMove : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, groundMask);
         isFloating = !isGrounded && Input.GetKey(KeyCode.Space) && yVelocity <= 0f;
+        canHook = Physics.Raycast(pCamera.transform.position, pCamera.transform.forward, out RaycastHit raycastHit, hookMaxDist, groundMask);
+        if(canHook) hookHit = raycastHit;
 
         //if player is grounded make yvelocity constant, player can jump while grounded
         if (isGrounded && yVelocity < 0)
@@ -135,10 +139,10 @@ public class PlayerMove : MonoBehaviour
         // Casts a ray, if it hits player is hooked
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(pCamera.transform.position, pCamera.transform.forward, out RaycastHit raycastHit, hookMaxDist))
+            if (canHook)
             {
-                testBox.transform.position = raycastHit.point;
-                hookPos = raycastHit.point;
+                //testBox.transform.position = raycastHit.point;
+                hookPos = hookHit.point;
                 hookSize = 0f;
                 hookShotTransform.gameObject.SetActive(true);
                 state = State.Thrown;

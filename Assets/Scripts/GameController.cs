@@ -6,15 +6,20 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     public PlayerMove player;
+    private Canvas ui;
 
-    public Text coinText;
+    private Text coinText;
     private float coinCount;
 
-    public Text velText;
+    private Text velText;
+    private Text crosshair;
 
     void Start()
     {
         coinCount = 0;
+        coinText = GameObject.Find("CoinText").GetComponent<Text>();
+        velText = GameObject.Find("VelocityText").GetComponent<Text>();
+        crosshair = GameObject.Find("Crosshair").GetComponent<Text>();
     }
 
     void Update()
@@ -22,6 +27,10 @@ public class GameController : MonoBehaviour
         Vector3 vel = player.velocity;
         float y = player.yVelocity;
         velText.text = $"Vel: ({vel.x.ToString("0.0")}, {y.ToString("0.0")}, {vel.z.ToString("0.0")}) VelM: {vel.magnitude}";
+        if(player.canHook) 
+            {crosshair.color = Color.magenta;}
+        else
+            {crosshair.color = Color.green;}
     }
 
     public void collect()

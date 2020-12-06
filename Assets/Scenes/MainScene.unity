@@ -153,8 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 706646380}
-  coinText: {fileID: 540941194}
-  velText: {fileID: 1667164759}
 --- !u!4 &27121737
 Transform:
   m_ObjectHideFlags: 0
@@ -944,8 +942,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8199995, y: 4.5682764, z: 15.428744}
-  m_Center: {x: 0, y: 0.6747181, z: 1.335368}
+  m_Size: {x: 3.8199995, y: 3.6836832, z: 15.428744}
+  m_Center: {x: 0, y: 0.2324215, z: 1.335368}
 --- !u!65 &303442588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2316,7 +2314,7 @@ GameObject:
   - component: {fileID: 687444551}
   - component: {fileID: 687444550}
   m_Layer: 5
-  m_Name: TempCrosshair
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2553,8 +2551,8 @@ MonoBehaviour:
     m_Bits: 256
   isFloating: 0
   state: 0
-  testBox: {fileID: 125020037}
   hookShotTransform: {fileID: 1246673695}
+  canHook: 0
   hookedSpeedMultiplier: 3
   hookMinSpeed: 10
   hookMaxSpeed: 50
@@ -8422,7 +8420,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-34504
+  m_Name: pb_Mesh-4812
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
