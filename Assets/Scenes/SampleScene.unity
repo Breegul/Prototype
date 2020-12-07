@@ -202,7 +202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &169842171
 GameObject:
@@ -445,7 +445,7 @@ Transform:
   - {fileID: 1261043259}
   - {fileID: 1165120094}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &579768241 stripped
 Transform:
@@ -594,9 +594,8 @@ Transform:
   - {fileID: 201257781}
   - {fileID: 963194228}
   - {fileID: 1802513699}
-  - {fileID: 1280806249}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 8.6, y: -91.115, z: -0.167}
 --- !u!114 &706646380
 MonoBehaviour:
@@ -613,6 +612,7 @@ MonoBehaviour:
   speed: 10
   jumpHeight: 3
   velocity: {x: 0, y: 0, z: 0}
+  yVelocity: 0
   momentumDrag: 2
   momentumMultiplier: 5
   isGrounded: 0
@@ -620,9 +620,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
+  isFloating: 0
   state: 0
-  testBox: {fileID: 125020037}
-  hookSpeedMultiplier: 3
+  hookShotTransform: {fileID: 0}
+  canHook: 0
+  hookedSpeedMultiplier: 0
+  hookMinSpeed: 0
+  hookMaxSpeed: 0
+  hookMaxDist: 0
 --- !u!4 &722814695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4701656345325597521, guid: 777acf7026f81924c967a5cc2489c48b, type: 3}
@@ -727,6 +732,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSensitivity: 500
   ySensitivity: 400
+  isUnderwater: 0
+  underwaterCol:
+    serializedVersion: 2
+    rgba: 0
 --- !u!1 &1047647145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.73, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1508554108
 PrefabInstance:
@@ -1434,8 +1443,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1473349770}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
