@@ -137,7 +137,7 @@ public class PlayerMove : MonoBehaviour
     private void HookStart()
     {
         // Casts a ray, if it hits player is hooked
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !PauseMenu.isPaused)
         {
             if (canHook)
             {
