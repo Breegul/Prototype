@@ -984,7 +984,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.79
+  orthographic size: 10.774223
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1026,7 +1026,6 @@ GameObject:
   - component: {fileID: 1191403240}
   - component: {fileID: 1191403239}
   - component: {fileID: 1191403241}
-  - component: {fileID: 1191403242}
   m_Layer: 5
   m_Name: NewAdventure
   m_TagString: Untagged
@@ -1106,18 +1105,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d44b175a23c3014cb63380a397c4a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1191403242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191403237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503d5d5f8e8bda04e97a44efa751eeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1192807177
@@ -1761,7 +1748,6 @@ GameObject:
   - component: {fileID: 1837891408}
   - component: {fileID: 1837891407}
   - component: {fileID: 1837891409}
-  - component: {fileID: 1837891410}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -1841,17 +1827,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d44b175a23c3014cb63380a397c4a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1837891410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837891405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503d5d5f8e8bda04e97a44efa751eeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
