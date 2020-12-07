@@ -154,7 +154,7 @@ public class PlayerMove : MonoBehaviour
     {
         hookShotTransform.LookAt(hookPos);
 
-        float hookThrowSpeed = 300f;
+        float hookThrowSpeed = 500f;
         hookSize += hookThrowSpeed*Time.deltaTime;
         hookShotTransform.localScale = new Vector3(1,1,hookSize);
 
