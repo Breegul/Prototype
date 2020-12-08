@@ -2420,7 +2420,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-506276
+  m_Name: pb_Mesh-733790
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6648,19 +6648,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &5222906103372111208
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6281063100928364648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.78884745, y: 0.41254175, z: 1.1506969}
-  m_Center: {x: -0.046018276, y: 0.051987726, z: -0.02216129}
 --- !u!4 &5485373313920828233
 Transform:
   m_ObjectHideFlags: 0
@@ -6747,10 +6734,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7021543121585496699}
   - component: {fileID: 2597236177550002535}
-  - component: {fileID: 5222906103372111208}
   - component: {fileID: 6281063100928364650}
   - component: {fileID: 6281063100928364649}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Turtle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6768,8 +6754,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9314405, y: 0.5918206, z: 1.2023064}
-  m_Center: {x: -0.034279335, y: 0.23589535, z: -0.02176113}
+  m_Size: {x: 0.9314405, y: 0.50441396, z: 1.2023064}
+  m_Center: {x: -0.034279335, y: 0.19219196, z: -0.02176113}
 --- !u!114 &6281063100928364650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6856,13 +6842,27 @@ GameObject:
   m_Component:
   - component: {fileID: 6254512505369612637}
   - component: {fileID: 8730710608940614108}
-  m_Layer: 0
+  - component: {fileID: 7211030460480514227}
+  m_Layer: 8
   m_Name: Turtle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &7211030460480514227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7211030460480514226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.78884745, y: 0.41254175, z: 1.1506969}
+  m_Center: {x: -0.046018276, y: 0.051987726, z: -0.02216129}
 --- !u!1 &7428927599684491040
 GameObject:
   m_ObjectHideFlags: 0
