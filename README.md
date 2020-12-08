@@ -22,4 +22,4 @@ Underwater ambient: https://assetstore.unity.com/packages/audio/ambient/underwat
 
 Whale sounds: https://www.partnersinrhyme.com/soundfx/PUBLIC-DOMAIN-SOUNDS/whales_sounds/whales_whale-haunting_wav.shtml
 
-Grappling hook: 
+Grappling hook: https://sketchfab.com/3d-models/tribes-vengeance-grappler-2b273f7abb484ed29ace055984eb26b9
