@@ -8,7 +8,7 @@ public class CircleMove : MonoBehaviour
 
     void Start()
     {
-        target = transform.Find("WhaleTarget").transform;
+        target = transform.Find("CircleTarget").transform;
     }
 
     void FixedUpdate()
