@@ -6,8 +6,6 @@ Space to jump, hold while falling to float. If you move while floating you'll fa
 
 Click to hookshot to a location
 
-Click again to cancel
-
 Jump while hookshotting to get a boost
 
  #
