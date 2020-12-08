@@ -11,7 +11,7 @@ public class PlayerLook : MonoBehaviour
     private float upRotation = 0;
     private GameObject player;
 
-    private float waterLevel = 28.5f;
+    private float waterLevel = 70f;
     public bool isUnderwater;
     public Color32 underwaterCol;
     
