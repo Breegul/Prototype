@@ -1983,7 +1983,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 5711422280218186426}
   m_HandleRect: {fileID: 5711422280469227629}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -50
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
