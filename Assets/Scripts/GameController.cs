@@ -44,7 +44,9 @@ public class GameController : MonoBehaviour
 
     public void collect()
     {
+        private int maxcoins;
         coinCount++;
-        coinText.text = "Coins Found: " + coinCount + "/5";
+        coinText.text = "Coins Found: " + coinCount + maxcoins;
+
     }
 }
