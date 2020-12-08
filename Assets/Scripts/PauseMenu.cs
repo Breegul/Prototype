@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseUI;
+    public GameObject settings;
     public AudioMixer audioMixer;
 
     // Update is called once per frame
@@ -38,6 +39,7 @@ public class PauseMenu : MonoBehaviour
         pauseUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        if(settings.activeSelf) settings.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
