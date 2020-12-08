@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    public float xSensitivity;
-    public float ySensitivity;
+    private float xSensitivity = 5;
+    private float ySensitivity = 4;
+    public float sensMod;
 
     private float upRotation = 0;
     private GameObject player;
@@ -19,6 +20,7 @@ public class PlayerLook : MonoBehaviour
         player = this.transform.parent.gameObject;
         Cursor.lockState = CursorLockMode.Locked; // hide cursor
         underwaterCol = new Color32(29, 51, 140, 128);
+        sensMod = 100f;
     }
 
     void Update()
@@ -34,12 +36,12 @@ public class PlayerLook : MonoBehaviour
         }
 
         // looks up but can't rotate too far
-        upRotation -= Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
+        upRotation -= Input.GetAxis("Mouse Y") * ySensitivity * sensMod * Time.deltaTime;
         upRotation = Mathf.Clamp(upRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(upRotation, 0f, 0f);
 
         // look around
-        float x = Input.GetAxis("Mouse X") * xSensitivity * Time.deltaTime;
+        float x = Input.GetAxis("Mouse X") * xSensitivity * sensMod * Time.deltaTime;
         player.transform.Rotate(Vector3.up*x);
     }
 }

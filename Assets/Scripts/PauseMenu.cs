@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseUI;
     public GameObject settings;
     public AudioMixer audioMixer;
+    public PlayerLook playerCam;
 
     // Update is called once per frame
     void Update()
@@ -58,5 +59,10 @@ public class PauseMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
+    }
+
+    public void SetSensitivity(float sensitivity)
+    {
+        playerCam.sensMod = sensitivity;
     }
 }
