@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     public PlayerMove player;
     private Canvas ui;
+    private LevelLoader loader;
 
     private Text coinText;
     private float coinCount;
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour
         coinText = GameObject.Find("CoinText").GetComponent<Text>();
         velText = GameObject.Find("VelocityText").GetComponent<Text>();
         crosshair = GameObject.Find("Crosshair").GetComponent<Text>();
+        loader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
     }
 
     void Update()
@@ -31,6 +33,11 @@ public class GameController : MonoBehaviour
             {crosshair.color = Color.magenta;}
         else
             {crosshair.color = Color.green;}
+        
+        if(coinCount == 5)
+        {
+            loader.LoadNext();
+        }
     }
 
     public void collect()
