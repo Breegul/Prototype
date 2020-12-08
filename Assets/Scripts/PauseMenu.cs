@@ -3,19 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject pauseUI;
     public GameObject settings;
-    public GameObject hud;
+    private GameObject hud;
     public AudioMixer audioMixer;
-    public PlayerLook playerCam;
+    private PlayerLook playerCam;
+    public Slider volSlide;
+    public Slider senSlide;
 
     void Start()
     {
         hud = GameObject.Find("UI");
+        playerCam = GameObject.Find("Camera").GetComponent<PlayerLook>();
+        if(PlayerPrefs.HasKey("volume"))
+        {
+            Debug.Log("VOLEXISTS");
+            volSlide.value = PlayerPrefs.GetFloat("volume");
+            SetVolume(PlayerPrefs.GetFloat("volume"));
+        }
+
+        if(PlayerPrefs.HasKey("sensitivity"))
+        {
+            Debug.Log("SENSEXISTS");
+            senSlide.value = PlayerPrefs.GetFloat("sensitivity");
+            SetSensitivity(PlayerPrefs.GetFloat("sensitivity"));
+        }
     }
 
     void Update()
@@ -66,10 +83,14 @@ public class PauseMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
+        PlayerPrefs.SetFloat("volume", volume);
+        PlayerPrefs.Save();
     }
 
     public void SetSensitivity(float sensitivity)
     {
         playerCam.sensMod = sensitivity;
+        PlayerPrefs.SetFloat("sensitivity", sensitivity);
+        PlayerPrefs.Save();
     }
 }

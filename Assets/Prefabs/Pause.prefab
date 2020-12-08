@@ -477,6 +477,8 @@ MonoBehaviour:
   settings: {fileID: 5711422280628258740}
   audioMixer: {fileID: 24100000, guid: 9bb6661bb07205e4a9e619aac8d2410c, type: 2}
   playerCam: {fileID: 0}
+  volSlide: {fileID: 5711422281187172650}
+  senSlide: {fileID: 5711422279883551681}
 --- !u!1 &5711422279883551683
 GameObject:
   m_ObjectHideFlags: 0

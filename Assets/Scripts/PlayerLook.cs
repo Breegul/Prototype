@@ -19,7 +19,7 @@ public class PlayerLook : MonoBehaviour
         player = this.transform.parent.gameObject;
         Cursor.lockState = CursorLockMode.Locked; // hide cursor
         underwaterCol = new Color32(29, 51, 140, 128);
-        sensMod = 100f;
+        sensMod = PlayerPrefs.GetFloat("sensitivity", 100f);
     }
 
     void Update()
