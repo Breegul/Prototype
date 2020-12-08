@@ -9,10 +9,15 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused = false;
     public GameObject pauseUI;
     public GameObject settings;
+    public GameObject hud;
     public AudioMixer audioMixer;
     public PlayerLook playerCam;
 
-    // Update is called once per frame
+    void Start()
+    {
+        hud = GameObject.Find("UI");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -30,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseUI.SetActive(true);
+        hud.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
@@ -38,6 +44,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseUI.SetActive(false);
+        hud.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
         if(settings.activeSelf) settings.SetActive(false);
