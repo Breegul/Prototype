@@ -18,7 +18,7 @@ Aquatic animals: https://rkuhlf-assets.itch.io/aquatic-animal-models
 
 Low poly water: https://assetstore.unity.com/packages/tools/particles-effects/lowpoly-water-107563#content
 
-Underwater ambient: https://assetstore.unity.com/packages/audio/ambient/underwater-ambient-66498
+Underwater ambient sounds: https://assetstore.unity.com/packages/audio/ambient/underwater-ambient-66498
 
 Whale sounds: https://www.partnersinrhyme.com/soundfx/PUBLIC-DOMAIN-SOUNDS/whales_sounds/whales_whale-haunting_wav.shtml
 
