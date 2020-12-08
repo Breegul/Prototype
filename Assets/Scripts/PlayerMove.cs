@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    //TODO: tweak all the multipliers and drag and stuff
-    //TODO: only allow certain things to be hooked?
     //TODO: if you go into a wall with high momentum you keep getting pushed into it until momentum runs out, fix? (if velocity.magnitude < 1: momentum = 0)?
     //      could be a feature, splat into the wall, slows you a bit.
     //TODO: Land before hook again?
@@ -14,23 +12,23 @@ public class PlayerMove : MonoBehaviour
     public float speed;
     public float jumpHeight;
 
-    public Vector3 velocity; //
-    public float yVelocity; //
+    private Vector3 velocity; 
+    private float yVelocity; 
     private Vector3 momentum;
     public float momentumDrag; //
     public float momentumMultiplier; //
 
     private float gravity = -10f;
-    public bool isGrounded; //
+    private bool isGrounded;
     public Transform groundCheck;
     public LayerMask groundMask;
-    public bool isFloating;
+    private bool isFloating;
 
     private CharacterController cc;
     private Camera pCamera;
 
-    public State state; //
-    public enum State //
+    private State state;
+    private enum State
     {
         Normal,
         Thrown,
@@ -43,12 +41,10 @@ public class PlayerMove : MonoBehaviour
     private float hookSize;
     public bool canHook;
     private RaycastHit hookHit;
-    public float hookedSpeedMultiplier; //
+    private float hookedSpeedMultiplier = 3f;
     public float hookMinSpeed; // Move these two down to HookMovement when done testing. (15, 50) seems ok
     public float hookMaxSpeed; //
     public float hookMaxDist;  //
-
-    private GameController gameController;
 
     void Start()
     {
@@ -56,9 +52,6 @@ public class PlayerMove : MonoBehaviour
         pCamera = transform.Find("Camera").GetComponent<Camera>();
 
         hookShotTransform.gameObject.SetActive(false);
-
-        GameObject gc = GameObject.Find("Game");
-        gameController = gc.GetComponent<GameController>();
 
         state = State.Normal;
     }
@@ -193,15 +186,5 @@ public class PlayerMove : MonoBehaviour
         state = State.Normal;
         yVelocity = 0;
         hookShotTransform.gameObject.SetActive(false);
-    }
-
-    //temp
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "PickUp")
-        {
-            other.gameObject.SetActive(false);
-            gameController.collect();
-        }
     }
 }

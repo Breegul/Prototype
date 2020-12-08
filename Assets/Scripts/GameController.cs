@@ -11,24 +11,26 @@ public class GameController : MonoBehaviour
 
     private Text coinText;
     private float coinCount;
-
-    private Text velText;
     private Text crosshair;
+
+    //private Text velText;
 
     void Start()
     {
         coinCount = 0;
         coinText = GameObject.Find("CoinText").GetComponent<Text>();
-        velText = GameObject.Find("VelocityText").GetComponent<Text>();
         crosshair = GameObject.Find("Crosshair").GetComponent<Text>();
         loader = GameObject.Find("LevelLoader").GetComponent<LevelLoader>();
+        //velText = GameObject.Find("VelocityText").GetComponent<Text>();
     }
 
     void Update()
     {
+        /*
         Vector3 vel = player.velocity;
         float y = player.yVelocity;
         velText.text = $"Vel: ({vel.x.ToString("0.0")}, {y.ToString("0.0")}, {vel.z.ToString("0.0")}) VelM: {vel.magnitude}";
+        */
         if(player.canHook) 
             {crosshair.color = Color.magenta;}
         else
