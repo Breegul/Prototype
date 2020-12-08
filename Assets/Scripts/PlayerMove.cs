@@ -8,16 +8,16 @@ public class PlayerMove : MonoBehaviour
     //      could be a feature, splat into the wall, slows you a bit.
     //TODO: Land before hook again?
 
-    //class variables marked with // are only public for testing, should be made private
-    public float speed;
-    public float jumpHeight;
-
+    //Ground movement
+    private float speed = 10f;
     private Vector3 velocity; 
     private float yVelocity; 
     private Vector3 momentum;
-    public float momentumDrag; //
-    public float momentumMultiplier; //
+    [SerializeField] private float momentumDrag;
+    [SerializeField] private float momentumMultiplier;
 
+    //Jumping/Floating
+    private float jumpHeight = 3f;
     private float gravity = -10f;
     private bool isGrounded;
     public Transform groundCheck;
@@ -27,6 +27,17 @@ public class PlayerMove : MonoBehaviour
     private CharacterController cc;
     private Camera pCamera;
 
+    //Hook
+    private Vector3 hookPos;
+    public Transform hookShotTransform; 
+    private float hookSize;
+    public bool canHook;
+    private RaycastHit hookHit;
+    private float hookedSpeedMultiplier = 3f;
+    private float hookMinSpeed = 15f; 
+    public float hookMaxSpeed; //
+    private float hookMaxDist = 100f;  
+
     private State state;
     private enum State
     {
@@ -35,16 +46,6 @@ public class PlayerMove : MonoBehaviour
         Hooked,
         Floating
     }
-    //public GameObject testBox;
-    private Vector3 hookPos;
-    public Transform hookShotTransform; // made public because things were breaking
-    private float hookSize;
-    public bool canHook;
-    private RaycastHit hookHit;
-    private float hookedSpeedMultiplier = 3f;
-    public float hookMinSpeed; // Move these two down to HookMovement when done testing. (15, 50) seems ok
-    public float hookMaxSpeed; //
-    public float hookMaxDist;  //
 
     void Start()
     {

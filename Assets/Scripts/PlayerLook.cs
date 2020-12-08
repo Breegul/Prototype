@@ -12,7 +12,6 @@ public class PlayerLook : MonoBehaviour
     private GameObject player;
 
     private float waterLevel = 70f;
-    public bool isUnderwater;
     public Color32 underwaterCol;
     
     void Start()
@@ -25,7 +24,7 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
-        isUnderwater = transform.position.y < waterLevel;
+        bool isUnderwater = transform.position.y < waterLevel;
         if(!isUnderwater) RenderSettings.fog = false;
 
         if(isUnderwater)

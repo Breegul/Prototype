@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SharkMove : MonoBehaviour
+public class CircleMove : MonoBehaviour
 {
-
     private Transform target;
 
     void Start()
     {
-        target = transform.Find("SharkTarget").transform;
+        target = transform.Find("WhaleTarget").transform;
     }
 
     void FixedUpdate()
     {
-        transform.RotateAround(target.position, Vector3.up, 22 * Time.deltaTime);
+        transform.RotateAround(target.position, Vector3.up, 20*Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other)
@@ -27,4 +26,3 @@ public class SharkMove : MonoBehaviour
         other.transform.parent = null;
     }
 }
-
