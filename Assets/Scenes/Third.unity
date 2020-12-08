@@ -1599,6 +1599,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 536576714131017796, guid: 125671530c2e10146a234c250e044769, type: 3}
+      propertyPath: waterLevel
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 536576714451519023, guid: 125671530c2e10146a234c250e044769, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -2304,7 +2308,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-464310
+  m_Name: pb_Mesh-506276
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6769,8 +6773,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9314404, y: 0.4793694, z: 1.2023063}
-  m_Center: {x: -0.034279335, y: 0.1796698, z: -0.02176114}
+  m_Size: {x: 0.9314405, y: 0.5918206, z: 1.2023064}
+  m_Center: {x: -0.034279335, y: 0.23589535, z: -0.02176113}
 --- !u!114 &6281063100928364650
 MonoBehaviour:
   m_ObjectHideFlags: 0
