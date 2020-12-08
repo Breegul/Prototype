@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     private LevelLoader loader;
 
     private Text coinText;
+    public float maxCoins = 5;
     private float coinCount;
     private Text crosshair;
 
@@ -36,7 +37,7 @@ public class GameController : MonoBehaviour
         else
             {crosshair.color = Color.green;}
         
-        if(coinCount == 5)
+        if(coinCount == maxCoins)
         {
             loader.LoadNext();
         }
@@ -44,9 +45,7 @@ public class GameController : MonoBehaviour
 
     public void collect()
     {
-        private int maxcoins;
         coinCount++;
-        coinText.text = "Coins Found: " + coinCount + maxcoins;
-
+        coinText.text = "Coins Found: " + coinCount + "/" + maxCoins;
     }
 }
